@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">OpenHiHat CC4</title>
+  <desc id="desc">An open-source hi-hat pedal to USB MIDI bridge. A passive pedal feeds the Pico ADC; CircuitPython sends controller 4 to a drum instrument.</desc>
+  <rect width="1280" height="560" fill="#151719"/>
+  <path d="M56 56H1224M56 504H1224" stroke="#44494c"/>
+  <g font-family="monospace" font-size="16" fill="#a5adb2">
+    <text x="56" y="90">OPEN-SOURCE INSTRUMENT / 001</text>
+    <text x="1224" y="90" text-anchor="end">RP2040 · CIRCUITPYTHON · MIT</text>
+  </g>
+  <text x="52" y="182" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="700" letter-spacing="-3" fill="#f4f2eb">OpenHiHat <tspan fill="#edb64a">CC4</tspan></text>
+  <text x="56" y="226" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#b6bdc1">Continuous hi-hat control. Built on a Raspberry Pi Pico.</text>
+  <g fill="none" stroke="#636a70" stroke-width="2">
+    <rect x="56" y="282" width="286" height="162"/>
+    <rect x="440" y="282" width="366" height="162"/>
+    <rect x="904" y="282" width="320" height="162"/>
+    <path d="M342 363H424m-10-7 10 7-10 7M806 363H888m-10-7 10 7-10 7" stroke="#edb64a"/>
+  </g>
+  <g font-family="monospace" font-size="14" fill="#a5adb2">
+    <text x="78" y="312">01 / ANALOG INPUT</text><text x="462" y="312">02 / FIRMWARE</text><text x="926" y="312">03 / USB MIDI</text>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#f4f2eb">
+    <text x="78" y="352">Hi-hat pedal</text><text x="462" y="352">Raspberry Pi Pico</text><text x="926" y="352">Drum instrument</text>
+  </g>
+  <g font-family="monospace" font-size="16" fill="#a5adb2">
+    <text x="78" y="393">Variable resistance</text><text x="78" y="418">3.3 V divider → GP26</text>
+    <text x="462" y="393">Calibrate · filter · map</text><text x="462" y="418">closed 0 → open 127</text>
+    <text x="926" y="393">Control Change / #4</text><text x="926" y="418" fill="#edb64a">B0 04 7F</text>
+  </g>
+  <g font-family="monospace" font-size="15" fill="#a5adb2">
+    <text x="56" y="483">ONE PEDAL INPUT</text><text x="440" y="483">NO DRUM MODULE REQUIRED</text><text x="1224" y="483" text-anchor="end">POSITION → CC4</text>
+  </g>
+</svg>

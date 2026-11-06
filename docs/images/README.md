@@ -1,5 +1,5 @@
-# README illustrations
+# README graphics
 
-These images are generated conceptual illustrations. They are not wiring diagrams or photographs of the tested prototype. Use `docs/hardware.md` and the Raspberry Pi documentation for the actual connections.
+The README uses editable SVG graphics with explicit text labels. `openhihat-banner.svg` explains the signal flow. `input-circuit.svg` documents the preliminary passive-pedal divider and its limitations. Refer to `docs/hardware.md` and the Raspberry Pi documentation before wiring.
 
-The built-in image generation tool created the illustrations from prompts describing a dark studio, hi-hat pedal, microcontroller, computer, and mint-green accents. The images contain no text or logos.
+These graphics are diagrams, not photographs. Values in the circuit graphic are measurements from the prototype, not specifications for every RealHat pedal.

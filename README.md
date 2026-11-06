@@ -1,6 +1,6 @@
 # OpenHiHat CC4
 
-![Illustration of a hi-hat pedal, microcontroller, and computer](docs/images/openhihat-hero.png)
+![OpenHiHat CC4 signal flow from pedal through Pico to a drum instrument](docs/images/openhihat-banner.svg)
 
 An open-source USB MIDI bridge for a continuous electronic hi-hat pedal. A Raspberry Pi Pico turns pedal movement into MIDI CC4 for a drum instrument such as Addictive Drums 2.
 
@@ -42,4 +42,4 @@ The firmware lives under `firmware/`. Behavioral tests live under `tests/`. Inst
 
 New source is available under the [MIT license](LICENSE). The backed-up programs and libraries retain their original licenses.
 
-![Concept illustration of a hi-hat pedal and cymbals](docs/images/pedal-illustration.png)
+![Preliminary passive-pedal voltage divider and Pico pin connections](docs/images/input-circuit.svg)

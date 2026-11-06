@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="680" viewBox="0 0 1280 680" role="img" aria-labelledby="title desc">
+  <title id="title">OpenHiHat prototype input circuit</title>
+  <desc id="desc">Pico pin 36 supplies 3.3 volts through an 8.08 kilohm measured resistor to a node connected to GP26 pin 31 and the pedal tip. The pedal sleeve connects to AGND pin 33. This is a preliminary passive-pedal divider, not a protected production circuit.</desc>
+  <rect width="1280" height="680" fill="#f5f3ed"/>
+  <g font-family="monospace" fill="#63676a" font-size="15">
+    <text x="56" y="54">OPENHIHAT CC4 / HARDWARE NOTE</text><text x="1224" y="54" text-anchor="end">PROTOTYPE · PASSIVE PEDAL ONLY</text>
+  </g>
+  <text x="56" y="110" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#202426">The input circuit</text>
+  <text x="56" y="148" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#63676a">One measured resistor. One variable-resistance pedal. Three Pico connections.</text>
+  <g fill="none" stroke="#202426" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M180 246H336l8-13 16 26 16-26 16 26 16-26 16 26 8-13H600V350H920"/>
+    <path d="M600 350V412"/>
+    <rect x="584" y="412" width="32" height="80"/>
+    <path d="M568 494l64-84m-13 5 13-5-1 13M600 492V548H920"/>
+    <circle cx="180" cy="246" r="5" fill="#202426"/>
+    <circle cx="920" cy="350" r="5" fill="#202426"/>
+    <circle cx="920" cy="548" r="5" fill="#202426"/>
+    <circle cx="600" cy="350" r="6" fill="#bd7b00" stroke="#bd7b00"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#202426" font-size="23" font-weight="700">
+    <text x="124" y="210">3V3 OUT</text><text x="290" y="210">8.08 kΩ measured</text>
+    <text x="946" y="345">GP26 / ADC0</text><text x="946" y="543">AGND</text>
+    <text x="670" y="457">RealHat pedal</text>
+  </g>
+  <g font-family="monospace" fill="#63676a" font-size="17">
+    <text x="124" y="285">PIN 36</text><text x="946" y="376">PIN 31</text><text x="946" y="574">PIN 33</text>
+    <text x="476" y="390">TIP</text><text x="452" y="537">SLEEVE</text>
+    <text x="670" y="489">~70 kΩ released</text><text x="670" y="516">~1–5 kΩ pressed</text>
+  </g>
+  <path d="M56 602H1224" stroke="#c6c7c2"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#63676a" font-size="17">
+    <text x="56" y="634">Disconnect USB before wiring. Verify your pedal, pinout, and input voltage. Do not connect to a drum module.</text>
+    <text x="56" y="660">Prototype divider only. Transient protection, filtering, and long-term reliability require further validation.</text>
+  </g>
+</svg>
