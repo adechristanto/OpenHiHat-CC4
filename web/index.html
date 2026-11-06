@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101412">
+    <title>OpenHiHat · Local monitor</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="OpenHiHat home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>OpenHiHat</span>
+        </a>
+        <div class="connection" id="connection" data-connected="false" role="status" aria-live="polite">
+          <span class="connection-dot"></span><span id="connection-label">Connecting to local bridge…</span>
+        </div>
+      </header>
+
+      <section class="intro">
+        <p class="eyebrow">LOCAL CONTROL PANEL <span>·</span> PICO RP2040</p>
+        <h1>Pedal monitor</h1>
+        <p class="lede">See what the Pico reads, calibrate a qualified circuit, and check MIDI routing from your Mac.</p>
+      </section>
+
+      <section class="safety-card" aria-labelledby="safety-title">
+        <span class="warning-icon" aria-hidden="true">!</span>
+        <div>
+          <h2 id="safety-title">Hardware safety check</h2>
+          <p>Identify and measure the pedal before wiring. Use a suitable protected input circuit and verify its voltage before calibration. ADC readings may float when no pedal is connected.</p>
+        </div>
+      </section>
+
+      <div class="workspace">
+        <section class="panel" aria-labelledby="pads-title">
+          <p class="eyebrow">VIRTUAL MIDI NOTES · CHANNEL 1</p>
+          <h2 id="pads-title">Two test pads</h2>
+          <p class="section-copy">These pads send notes from OpenHiHat Test. Your real pedal supplies CC4 separately. In AD2, enable both MIDI sources and use Learn next to CC Hihat Tip, then strike a pad.</p>
+          <label>Velocity <input id="pad-velocity" type="number" min="1" max="127" value="100"></label>
+          <div class="preset-row">
+            <div><label for="pad-note-1">Pad 1 MIDI note</label><input id="pad-note-1" type="number" min="0" max="127" value="42"><button class="button button-primary send-button" id="pad-1" type="button">Pad 1 · A</button></div>
+            <div><label for="pad-note-2">Pad 2 MIDI note</label><input id="pad-note-2" type="number" min="0" max="127" value="38"><button class="button button-primary send-button" id="pad-2" type="button">Pad 2 · S</button></div>
+          </div>
+          <p class="inline-feedback" id="pad-feedback" aria-live="polite">Click a pad or press A or S. Notes are synthetic.</p>
+        </section>
+        <section class="panel pico-panel" aria-labelledby="pico-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">LIVE DEVICE</p>
+              <h2 id="pico-title">Pico status</h2>
+            </div>
+            <button class="button button-quiet" id="refresh-button" type="button">Refresh</button>
+          </div>
+          <div class="state-row">
+            <span class="state-label">Firmware state</span>
+            <span class="state-pill" id="firmware-state">Waiting…</span>
+          </div>
+          <div class="metrics">
+            <article class="metric">
+              <span class="metric-label">Raw ADC <span class="unit">0–65535</span></span>
+              <strong id="raw-value">—</strong>
+            </article>
+            <article class="metric">
+              <span class="metric-label">Filtered ADC</span>
+              <strong id="filtered-value">—</strong>
+            </article>
+            <article class="metric metric-accent">
+              <span class="metric-label">Live CC4 <span class="unit">0–127</span></span>
+              <strong id="cc-value">—</strong>
+            </article>
+          </div>
+          <div class="meter" aria-label="Live CC4 position">
+            <div class="meter-fill" id="live-meter"></div>
+          </div>
+          <div class="meter-scale"><span>0 · Closed</span><span>127 · Open</span></div>
+          <div class="calibration-readout">
+            <span>Calibration endpoints</span><strong id="calibration-value">Not captured</strong>
+          </div>
+          <details class="status-details">
+            <summary>Raw status response</summary>
+            <pre id="status-response">Waiting for the local bridge…</pre>
+          </details>
+          <p class="update-note"><span class="pulse"></span> Updates up to four times per second</p>
+        </section>
+
+        <section class="panel calibration-panel" aria-labelledby="calibration-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">DEVICE COMMANDS</p>
+              <h2 id="calibration-title">Calibration</h2>
+            </div>
+          </div>
+          <p class="section-copy">Capture stable readings at each pedal endpoint. Calibration writes settings to the Pico.</p>
+          <label class="qualification-check">
+            <input type="checkbox" id="qualified-check">
+            <span>I have verified the exact pedal model and unpowered measurements, and its protected circuit is approved.</span>
+          </label>
+          <div class="button-stack">
+            <button class="button button-primary" id="open-calibration" type="button" disabled>Capture fully open</button>
+            <button class="button button-secondary" id="closed-calibration" type="button" disabled>Capture fully closed</button>
+            <button class="button button-quiet" id="cancel-calibration" type="button" disabled>Cancel calibration</button>
+          </div>
+          <p class="inline-feedback" id="command-feedback" aria-live="polite">Calibration controls are locked until the hardware check is confirmed.</p>
+        </section>
+
+        <section class="panel midi-panel" aria-labelledby="midi-title">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">MAC MIDI ROUTING</p>
+              <h2 id="midi-title">MIDI Monitor test</h2>
+            </div>
+            <span class="synthetic-tag">SYNTHETIC</span>
+          </div>
+          <div class="synthetic-warning"><strong>This does not use the Pico.</strong> Test values are sent by the Mac as CC4 from the virtual MIDI source <code>OpenHiHat Test</code>.</div>
+          <label class="slider-label" for="test-value"><span>Test CC4 value</span><output id="test-value-output" for="test-value">64</output></label>
+          <input id="test-value" type="range" min="0" max="127" value="64">
+          <div class="meter-scale"><span>0</span><span>127</span></div>
+          <div class="preset-row">
+            <button class="button button-small" type="button" data-midi-value="0">Send 0</button>
+            <button class="button button-small" type="button" data-midi-value="64">Send 64</button>
+            <button class="button button-small" type="button" data-midi-value="127">Send 127</button>
+          </div>
+          <button class="button button-primary send-button" id="send-test" type="button">Send synthetic CC4 <span id="send-value">64</span></button>
+          <p class="inline-feedback" id="midi-feedback" aria-live="polite">Nothing has been sent. Choose a value to send one test message.</p>
+          <div class="monitor-help">
+            <span class="help-number">01</span><p>In <strong>MIDI Monitor</strong>, open Sources and select <strong>OpenHiHat Test</strong>.</p>
+            <span class="help-number">02</span><p>In MIDI Monitor, watch for a Control Change on controller <strong>4</strong> from <strong>OpenHiHat Test</strong>.</p>
+          </div>
+        </section>
+      </div>
+      <footer>Served locally on this Mac <span>·</span> No network services or libraries</footer>
+    </main>
+  </body>
+</html>
